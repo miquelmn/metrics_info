@@ -8,16 +8,15 @@
 | :-------------- |:-----------------| :-----:| :--------- |
 | Saliency checks for saliency metrics      								| [R. Tomsett *et al.*](https://aaai.org/ojs/index.php/AAAI/article/view/6064) | 2020 | *-* |
 | Towards Robust Interpretability with Self-Explaining Neural Networks      | [D. Alvarez *et al.*](http://arxiv.org/abs/1806.07538)    |   2018 | *Goodness* |
-| Evaluating the visualization of what a deep neural network has learned 	| [W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/)      | 2017 | *Goodness* |
+| Evaluating the visualization of what a deep neural network has learned 	| [W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/) | 2017 | *Goodness* |
 | A benchmark for interpretability methods in deep neural networks			| [S. Hooker *et al.*](http://arxiv.org/abs/1806.10758) 	| 2018 	| *Goodness* |
+| RisE: Randomized input sampling for explanation of black-box models 		| [V. Petsiuk *et al.*](http://arxiv.org/abs/1806.07421)	| 2018	| *Goodness* |
 | Metrics for saliency map evaluation of deep learning explanation methods	| [T. Gomez *et al.*](http://arxiv.org/abs/1806.10758)		| 2020	| *Goodness* |
 | Metrics for Explainable AI: Challenges and Prospects						| [R. Hoffman *et al.*](http://arxiv.org/abs/1812.04608)	| 2019	| *Trust* 	 |
-| Trust in automated systems literature review					| [Adams, *et al.*](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc13/p520342.pdf)	| 2003	| *Trust* 	 |
+| Trust in automated systems literature review				| [Adams, *et al.*](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc13/p520342.pdf)	| 2003	| *Trust* 	 |
 | Explaining black-box classifiers using post-hoc explanations-by-example: The effect of explanations and error-rates in XAI user studies						| [E. Kenny *et al.*](https://www.sciencedirect.com/science/article/pii/S0004370221000102?via%3Dihub)	| 2021	| Experiments	 |
 | Improving users’ mental model with attention‐directed counterfactual edits						| [K. Alipour *et al.*](https://onlinelibrary.wiley.com/doi/10.1002/ail2.47)	| 2021	| Experiments 	 |
 | Generating and Evaluating Explanations of Attended and Error-Inducing Input Regions for VQA Models | [A. Ray *et al.*](http://dx.doi.org/10.22541/au.162464902.28050142/v1)	| 2021	| Experiments 	 |
-
-
 
 
 </center>
@@ -78,6 +77,14 @@ Els autors defineixen un *framework* per l'obtenció d'explicacions: **ROAR, Rem
 
 Els resultats que s'esperen és que si eliminam els píxels amb major saliència hauríem de tenir una menor acuracy del test-set.
 
+### RisE: Randomized input sampling for explanation of black-box models ([V. Petsiuk *et al.*](http://arxiv.org/abs/1806.07421))
+
+Els autors d'aquest article proposen un mètode d'explicabilitat: RISE (apareix a l'SLR). Una vegada proposat defineixen un conjunt d'experiments per comprovar la qualitat del mapa de saliència. Defineixen dues mètriques. El seu objectiu és obtenir mètriques objectives sense que l'usuari formi part de la seva avaluació. Proposen dues mètriques:
+
+- 	*__Deletion Area Under Curve (DAUC)__*. Elimina successius píxels de més a menor importància i defineix una corba amb aquesta operació. Finalment fa l'integral de l'àrea davall aquesta corba.
+-	*__Integration Area Under Curve (IAUC)__*. Inversa que l'anterior parteix des d'una imatge completament modificada i va recuperant els valors original amb ordre. De la mateixa manera defineix una corba i calcula la integral.  
+
+A part d'aquestes dues mètriques defineix el que anomena *Pointing game* a on es comparen els mapes de saliència amb un *ground truth*. Es considera que un píxel és correcte si està dins la *bounding box* definida en el GT i incorrecte sinó. Es calcula la proporció de correctes respecte el total.
 
 ### Metrics for saliency map evaluation of deep learning explanation methods ([T. Gomez *et al.*](http://arxiv.org/abs/1806.10758))
 
