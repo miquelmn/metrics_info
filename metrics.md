@@ -1,5 +1,27 @@
 # Mètriques per saliència
 
+## Índex
+
+<center>
+
+|  Article        | Autors           | Any    | Categoria  |
+| :-------------- |:-----------------| :-----:| :--------- |
+| Saliency checks for saliency metrics      								| [R. Tomsett *et al.*](https://aaai.org/ojs/index.php/AAAI/article/view/6064) | 2020 | *-* |
+| Towards Robust Interpretability with Self-Explaining Neural Networks      | [D. Alvarez *et al.*](http://arxiv.org/abs/1806.07538)    |   2018 | *Goodness* |
+| Evaluating the visualization of what a deep neural network has learned 	| [W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/)      | 2017 | *Goodness* |
+| A benchmark for interpretability methods in deep neural networks			| [S. Hooker *et al.*](http://arxiv.org/abs/1806.10758) 	| 2018 	| *Goodness* |
+| Metrics for saliency map evaluation of deep learning explanation methods	| [T. Gomez *et al.*](http://arxiv.org/abs/1806.10758)		| 2020	| *Goodness* |
+| Metrics for Explainable AI: Challenges and Prospects						| [R. Hoffman *et al.*](http://arxiv.org/abs/1812.04608)	| 2019	| *Trust* 	 |
+| Trust in automated systems literature review					| [Adams, *et al.*](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc13/p520342.pdf)	| 2003	| *Trust* 	 |
+| Explaining black-box classifiers using post-hoc explanations-by-example: The effect of explanations and error-rates in XAI user studies						| [E. Kenny *et al.*](https://www.sciencedirect.com/science/article/pii/S0004370221000102?via%3Dihub)	| 2021	| Experiments	 |
+| Improving users’ mental model with attention‐directed counterfactual edits						| [K. Alipour *et al.*](https://onlinelibrary.wiley.com/doi/10.1002/ail2.47)	| 2021	| Experiments 	 |
+| Generating and Evaluating Explanations of Attended and Error-Inducing Input Regions for VQA Models | [A. Ray *et al.*](http://dx.doi.org/10.22541/au.162464902.28050142/v1)	| 2021	| Experiments 	 |
+
+
+
+
+</center>
+
 <br />
 <div align="center">
 	<img style="width: 70%;" src="figs/hoffman_model.png" />
@@ -9,26 +31,44 @@
 <br />
 
 ## *Goodness*
-#### Saliency checks for saliency metrics [(R. Tomsett *et al.* 2020)](https://aaai.org/ojs/index.php/AAAI/article/view/6064)
+### Saliency checks for saliency metrics [(R. Tomsett *et al.* 2020)](https://aaai.org/ojs/index.php/AAAI/article/view/6064)
 
-TODO: Afegir resum de Inter-rater, Inter-method i Internal consistency reliability.
+Els autors analitzen la fiabilitat (*reliability*) d'un conjunt de mètriques per mapes de saliència, és a dir, si els resultats són consistents.
 
-#### Towards Robust Interpretability with Self-Explaining Neural Networks [(Alvarez *et al.* (2018))](http://arxiv.org/abs/1806.07538)
+> While a reliable metric is not necessarily valid, a valid metric must be reliable (Davidshofer and Murphy 2005)
+
+La fiabilitat és estimada amb tres ítems diferents:
+
+-	*__Inter-rater reliability__*. Consistència del mapa de saliència entre diferents imatges. *In other words, does the metric consistently rank some saliency methods higher than others over all the images?*. Per mesurar aquesta característica empren l'estadístic de Krippendorf. 
+	<center>
+
+	![equation](http://www.sciweavers.org/tex2img.php?eq=%20\alpha%20=%201%20-%20%20\frac{D_o}{D_e}%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+
+	</center>
+
+	a on D_o és la diferència entre imatges i D_e és l'esperat per motius aleatoris. 
+
+- *__Inter-method reliability__*. Comprova si la mètrica és similar a diferents mètodes de saliència. Això es pot mesurar mitjançant el càlcul de la correlació entre les saliències calculades per imatges amb diferents mètodes.
+- *__Internal consistency reliability__*. Indica si diferents mètriques de saliència analitzen el mateix element. Això es pot mesurar calculant la correlació entre diferents mètriques.
+
+Mesuren aquests tres ítems per dues mètriques, les introduïdes per D. Alvarez *et al.* i per W. Samek *et al.*. Els resultats mostren que **no compleixen cap dels tres requisits**. Per aquest motiu es pot seguir investigant sobre mètriques de bonessa per mapes de saliència.
+
+### Towards Robust Interpretability with Self-Explaining Neural Networks [(D. Alvarez *et al.* (2018))](http://arxiv.org/abs/1806.07538)
 	
 Creen conceptes amb un autoencoder, similar a *tcav*. Els conceptes s'expliquen mitjançant *prototypes* (exemples). Valoren tres elements diferents:
 
 - (i) *Explicitness/Intelligibility: Are the explanations immediate and understandable?*
 		**Qualitatiu**: Subjectivament si l'explicació és immediata. 
 - (ii) *Faithfulness: Are relevance scores indicative of "true" importance?* 
-		**Quantitatiu**: És un mètode objectiu que es calcula $t.q.$ la F(x) = a la correlació de Pearson entre la importància donada pel mètode de saliència i com la pertorbació d'aquella features (píxel en el cas de CNN i saliència) afecta la classificació.
+		**Quantitatiu**: És un mètode objectiu que es calcula tal que la F(x) = a la correlació de Pearson entre la importància donada pel mètode de saliència i com la pertorbació d'aquella features (píxel en el cas de CNN i saliència) afecta la classificació.
 - (iii) *Stability: How consistent are the explanations for similar/neighboring examples?*
 		**Quantitatiu**: Indica si l'explicació és consistent a petites pertorbacions de l'entrada.
 
-#### Evaluating the visualization of what a deep neural network has learned [W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/)
+### Evaluating the visualization of what a deep neural network has learned ([W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/))
 	
 Detecten que la qualitat dels mapes de saliència no és avaluada objectivament i ho pretenen resoldre introduint un *framework* amb aquesta finalitat. Defineixen l'AOPC, una mètrica consistent en eliminar les àrees més importants, segons el mapa de saliència, i observar com canvia el resultat del model. Després es calcula l'àrea davall la corba que defineix, en el gràfic RES-NPerturbació, la pertorbació iterativa de l'entrada.
 	
-#### A benchmark for interpretability methods in deep neural networks ([S. Hooker *et al.*](http://arxiv.org/abs/1806.10758))
+### A benchmark for interpretability methods in deep neural networks ([S. Hooker *et al.*](http://arxiv.org/abs/1806.10758))
 
 Els autors defineixen un *framework* per l'obtenció d'explicacions: **ROAR, RemOve And Retrain**. Aquest *framework* consisteix en pertorbar el *dataset* (tant el d'entranment com el de validació) a partir de la saliència i tornen a entrenar el model. Així poden assegurar-se que la pèrdua de qualitat en les classificacions no és causada per modificar les imatges *per se* sinó per la correcta selecció dels píxels de qualitat: 
 
@@ -39,21 +79,34 @@ Els autors defineixen un *framework* per l'obtenció d'explicacions: **ROAR, Rem
 Els resultats que s'esperen és que si eliminam els píxels amb major saliència hauríem de tenir una menor acuracy del test-set.
 
 
-#### Metrics for saliency map evaluation of deep learning explanation methods ([T. Gomez](http://arxiv.org/abs/1806.10758))
+### Metrics for saliency map evaluation of deep learning explanation methods ([T. Gomez *et al.*](http://arxiv.org/abs/1806.10758))
 
+Els autors d'aquest article observen que la majoria de les mètriques per la bonessa dels mapes de saliència es basen en la modificació de l'entrada seguint el que indica la saliència. Analitzen dues mètriques basades en això: *Deletion Area Under Curve (DAUC)* i *Integration Area Under Curve (IAUC)*. Partint d'aquest anàlisi observen que aquestes mètriques no són vàlides ja que les modificacions de la imatge provoca que siguin de diferents dominis.
 
-<!--- Tant l'article de saliency metrics, com aquests tres articles, tenen en comú que no són mètriques de la qualitat de l'explicabilitat, sinó de la seva fiabilitat, és a dir, comproven que realment el mapa de saliència sigui cert. **Emprar aquestes mètriques com a priori de qualsevol experiment**. -->
+> Indeed, the kind of distortions produced by the masking/blurring operations do not exist naturally in the dataset and are different from the kind produced by the standard data augmentations like random crop, horizontal flip, and color jitter, meaning that the model has not learned to process images with such distortions. Therefore, the distribution of the images presented to the model is different from the one met during training. However, it has been documented that CNNs and more generally deep learning models have poor generalization outside of the training distribution [9]. This shows that DAUC and IAUC may not reflect the faithfulness of explanation methods as they are based on a behavior of the model that is different from that encountered when facing training distribution (e.g. during the test phase).
 
+A més de la limitació anterior també s'observa que les mètriques existents no tenen en compte el valor absolut de la saliència sinó només el seu ordre. Per resoldre aquestes limitacions proposen tot un conjunt de mètriques **complementàries** (no tenen sentit tampoc per elles mateixes):
 
+-	*__Sparcity__*. Un mapa de saliència és menys espars si la zona mostrada està més concentrada en un menor nombre de píxels. 
+
+	<center>
+
+	![equation](https://bit.ly/34ZHIu8)
+
+	</center>
+
+-	*__Calibration__*. Una mapa de saliència està calibrat quan els valors dels píxels únicament contenen informació de la importància d'aquests píxels per la classificació. Proposen dues mètriques similars a les vistes, que modifiquen l'entrada i després realitzen la correlació entre la saliència i els valors de la classificació de la imatge modificada. El propi article indica que aquestes mètriques també provoquen imatges fora del domini.
+
+**No es poden emprar aquestes mètriques separades.**
 
 ## *Trust*
-#### Metrics for Explainable AI: Challenges and Prospects ([R. Hoffman *et al.*](http://arxiv.org/abs/1812.04608))
+### Metrics for Explainable AI: Challenges and Prospects ([R. Hoffman *et al.*](http://arxiv.org/abs/1812.04608))
 
 Analitzen diferents aspectes psicològics de l'explicabilitat i com mesurar-los:
 
 -	**Bonesa (*Goodness*)**. És l'explicació clara i precisa. Per mesurar-ho presententen una checklist.
 -	**Satisfacció (*Satisfaction*)**. L'explicació és satisfactòria per l'usuari en el seu context. És descrita com el grau amb el qual l'usuari considera que entén el sistema d'IA explicat a ell. 
--	**Curiositat (*Curiosity*)**- La cerca de l'explicació està induïda per la curiositat, per tant, la manca d'aquesta fa que l'explicació sigui manco útil. Checklist
+-	**Curiositat (*Curiosity*)**. La cerca de l'explicació està induïda per la curiositat, per tant, la manca d'aquesta fa que l'explicació sigui manco útil. Checklist
 -	**Confiançan (*Trust*)**. Dues preguntes formen part d'aquesta confiança: et dona confiança? Seguiries la recomanació del sistema? Scales:
 	-	**Cahour-Forzy (2009), [Adams, et al. (2003)](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc17/p520342.pdf)**. 
 	-	**Montague (2010)**. Aplicat a eines per la diagnosi de malalties. 
@@ -61,10 +114,11 @@ Analitzen diferents aspectes psicològics de l'explicabilitat i com mesurar-los:
 	-	**Madsen-Gregor Scale**. La confiança es defineix amb cinc factors: *reliability, technical competence, understanbility, faith, personal attachment*.
 	- 	**Merrit**. Similar a Cahour-Forzy.
 
+### Trust in automated systems literature review ([Adams, *et al.*](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc13/p520342.pdf))
+ 
+Estat de l'art sobre la confiança amb sistemes automàtics. L'important es que proposen una escala pel càlcul de la confiança.
 
-[**Adams, et al.**](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc13/p520342.pdf). Pàgina 31 - Annex A (pàg. 124)
-
-> The scale assumes that the participant has had considerable experience using the XAI system. Hence, these questions would be appropriate for scaling after a period of use, rather than immediately after an explanation has been given and prior to use experience. In the original scale, the items are rated on a bipolar scale going from "I agree completely" to "I do not agree at all."*
+> The scale assumes that the participant has had considerable experience using the XAI system. Hence, these questions would be appropriate for scaling after a period of use, rather than immediately after an explanation has been given and prior to use experience. In the original scale, the items are rated on a bipolar scale going from "I agree completely" to "I do not agree at all." Pàgina 31 - Annex A (pàg. 124)
 
 <div align="center" style="display: flex; justify-content: space-around">
 	<img style="width: 40%;" src="figs/pag1.png" />
@@ -73,8 +127,8 @@ Analitzen diferents aspectes psicològics de l'explicabilitat i com mesurar-los:
 
 ## Interfícies i disseny d'experiments
 
-#### Explaining black-box classifiers using post-hoc explanations-by-example: The effect of explanations and error-rates in XAI user studies ([E. Kenny *et al.*](https://doi.org/10.1016/j.artint.2021.103459))
-##### Preprint: Play MNIST for me! user studies on the effects of post-hoc, example-based explanations & error rates on debugging a deep learning, black-box classifier [(C. Ford *et al.*)](https://arxiv.org/ftp/arxiv/papers/2009/2009.06349.pdf)
+### Explaining black-box classifiers using post-hoc explanations-by-example: The effect of explanations and error-rates in XAI user studies ([E. Kenny *et al.*](https://doi.org/10.1016/j.artint.2021.103459))
+#### Preprint: Play MNIST for me! user studies on the effects of post-hoc, example-based explanations & error rates on debugging a deep learning, black-box classifier [(C. Ford *et al.*)](https://arxiv.org/ftp/arxiv/papers/2009/2009.06349.pdf)
 
 Duen a terme dos experiments per analitzar l'explicació obtinguda d'un algoritme XAI d'explicació per exemple (vegeu figura següent). L'explicació tant pot ser present (A i B) com absent (C). Aquest fet és tingut en compte per l'obtenció dels resultats.
 
@@ -108,7 +162,7 @@ El segon experiment consisteix a observar com afecten ràtio d'error alts en la 
 
 El tercer experiment serveix per calcular la confiança no amb una de les prediccions sinó del model en conjunt. Per fer-ho afegeixen dues avaluacions per part de l'usuari, abans i després d'executar un dels experiments previs, a on es demana avaluar el model en conjunt.
 
-#### Improving users' mental model with attention‐directed counterfactual edits ([K. Alipour *et al.*](https://onlinelibrary.wiley.com/doi/10.1002/ail2.47))
+### Improving users' mental model with attention‐directed counterfactual edits ([K. Alipour *et al.*](https://onlinelibrary.wiley.com/doi/10.1002/ail2.47))
 
 Realitzen experiments de XAI respecte a un sistema d'imatge-pregunta (*image-question (IQ)*). El seu objectiu és:
 
@@ -136,10 +190,25 @@ Defineixen dos experiments diferents. El primer experiment consisteix a mostrar 
 
 Els resultats del primer experiment permeten observar com l'exposició d'exemple contrafactuals millora significativament la capacitat de l'usuari de prediure si el model realitzarà la tasca correctament, és a dir, permet millorar el model mental de l'usuari. Els resultats del segons experiment són totalment compatibles amb els obtinguts en el primer experiment. Així s'observa que la presència d'exemples contrafactuals millora la capacitat de l'usuari de respondre la pregunta que preten resoldre el model imatge-pregunta.
 
-#### Generating and Evaluating Explanations of Attended and Error-Inducing Input Regions for VQA Models ([A. Ray *et al.*](http://dx.doi.org/10.22541/au.162464902.28050142/v1))
+### Generating and Evaluating Explanations of Attended and Error-Inducing Input Regions for VQA Models ([A. Ray *et al.*](http://dx.doi.org/10.22541/au.162464902.28050142/v1))
+
+Defineixen un tipus especial de saliència anomenat *Errors-maps*. Aquests mapes de saliència permeten saber quina zona és la que pot provocar que el model faci la tasca malament. Això ho fan per la poca utilitat dels mapes de saliència actuals. 
 
 > Users get mislead by current attention maps We observe that the users’ accuracy in predicting correctness does not improve over not seeing any attention maps. In fact, we see a slight decrease (57.18% without explanations, 56.87% when seeing attention maps). This suggests that the guessing accuracy in either case (with or without attention maps) is close to random guessing (50%).
 
-## Conclusions
+Els mapes d'error, en combinació dels mapes d'atenció (mapes de saliència típics). Permeten comprovar si el model es correcte o no.
 
-~~El primer conjunt de mètriques no són el que ens interessen: indiquen si l'algoritme és correcte, però no si una persona hi confiaria (són mètriques de XAI però no d'explicació). El segon conjunt d'eines serveixen per avaluar la confiança. Tots els mètodes es basen en escales i sistemes complexes. El resultat no és simple d'interpretar.~~
+<br />
+<div align="center">
+	<img style="width: 70%;" src="figs/ray-fig1.png" />
+</div>
+<br />
+
+Creen una nova mètrica *helpfulness*, aquesta mètrica considera un model d'explicabilitat millor si la rellavança del mètode es major quan el model d'IA és correcte que quan és incorrecte. En el cas dels mapa d'error és el contrari: la rellavança hauria de ser major quan el model d'IA és incorrecte. La rellavança es calculada comparant el mapa de saliència amb mapes d'atenció extret d'usuaris.
+
+#### Experiment
+
+L'experimentació duita a terme té dues parts diferents. Una primera que amb la mètrica *helpfulness* compara diferents algoritmes d'obtenció de mapes de saliència. I una segona part que consisteix en mostrar a usuaris parelles imatge-pregunta i demanar que intentin resoldre la pregunta. Els usuaris es divideixen en subgrups depenent de si observen, a la vegada que la imatge i la pregunta, un mapa d'error. Empren l'*accuracy* dels usuaris com a mètrica. Els resultats indiquen que la presència d'explicació millora la *performance* dels usuaris.
+
+
+## Conclusions
