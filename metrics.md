@@ -41,7 +41,7 @@ La fiabilitat és estimada amb tres ítems diferents:
 -	*__Inter-rater reliability__*. Consistència del mapa de saliència entre diferents imatges. *In other words, does the metric consistently rank some saliency methods higher than others over all the images?*. Per mesurar aquesta característica empren l'estadístic de Krippendorf. 
 	<center>
 
-	![equation](http://www.sciweavers.org/tex2img.php?eq=%20\alpha%20=%201%20-%20%20\frac{D_o}{D_e}%20&bc=White&fc=Black&im=jpg&fs=12&ff=arev&edit=0)
+	<img src="figs/inter_rater.png" />
 
 	</center>
 
@@ -84,7 +84,7 @@ Els autors d'aquest article proposen un mètode d'explicabilitat: RISE (apareix 
 - 	*__Deletion Area Under Curve (DAUC)__*. Elimina successius píxels de més a menor importància i defineix una corba amb aquesta operació. Finalment fa l'integral de l'àrea davall aquesta corba.
 -	*__Integration Area Under Curve (IAUC)__*. Inversa que l'anterior parteix des d'una imatge completament modificada i va recuperant els valors original amb ordre. De la mateixa manera defineix una corba i calcula la integral.  
 
-A part d'aquestes dues mètriques defineix el que anomena *Pointing game* a on es comparen els mapes de saliència amb un *ground truth*. Es considera que un píxel és correcte si està dins la *bounding box* definida en el GT i incorrecte sinó. Es calcula la proporció de correctes respecte el total.
+A part d'aquestes dues mètriques defineix el que anomena *Pointing game* a on es comparen els mapes de saliència amb un *ground truth* definid per humans. Es considera que un píxel és correcte si està dins la *bounding box* definida en el GT i incorrecte sinó. Es calcula la proporció de correctes respecte el total.
 
 ### Metrics for saliency map evaluation of deep learning explanation methods ([T. Gomez *et al.*](http://arxiv.org/abs/1806.10758))
 
@@ -219,3 +219,11 @@ L'experimentació duita a terme té dues parts diferents. Una primera que amb la
 
 
 ## Conclusions
+
+Els articles analitzats es poden dividir en quatre grups depenent del motiu de la inserció: *goodness*, *trust*, *experiment* o l'article de Tomsett *et al.* que no està inclòs en cap de les categories prèvies per la seva particularitat. 
+
+Començant pel final Tomsett *et al.* defineixen un conjunt de comprovacions per mètriques de saliència (mètriques de *goodness*) amb l'objectiu de comprovar que les mètriques són vàlides. El problema, però és si tenen sentit totes les comprovacions. Mentre que la *inter-rater* sí que en sembla tenir, mapes similars haurien de tenir mètriques similars, les altres dues no queda tan clar. Per exemple perquè estaria malament la mètrica si dos mètodes de XAI tenen diferents mètriques (*inter method reliability*), en aquest cas la qüestió seria amb el mètode de XAI i no amb la mètrica. I en el cas del tercer check *inter consistency* pot ser que diferents mètriques indiquen coses diferents i alhora ser correctes, per exemple en el cas de la classificació *precision* i *recall* són 0 consistents i les dues són mètriques igual de vàlides.
+
+En l'àmbit de la Goodness observam com la majoria de les mètriques es basen a modificar l'entrada dels models depenent de la saliència i com aquest canvi afecta la sortida del model. Típicament, després es duu a terme un càlcul de correlació. Aquestes mètriques tenen el problema que modifiquen el domini de les imatges, per tant, no es pot assegurar que la correlació entre la modificació i la saliència sigui perquè la saliència és correcte o perquè s'ha canviat la imatge. Dos articles ho intenten superar: S. Hooker *et al.* i T. Gomez *et al.*. El primer proposa el framework *ROAR*, consistent en esborrar els elements més importants i tornar a entrenar, el seu problema és el cost computacional. El segon suggereix l'ús de dues mètriques complementàries, *sparcity* i *calibation*.
+
+Des d'un punt de vista de la *trust* la majoria dels mètodes empren checklists i escales. El problema d'aquests mètodes és que són difícils d'analitzar. Adams *et al.* proposa una escala de vuit elements diferents amb valoracions d'1 a 5. Alipour *et al.* i Kenny *et al.* fan experiments implícits de confiança. Amb el mateix model demanen a l'usuari dur a terme qualque tasca i hi ha un subgrup als quals observen l'explicació i un altre que no. Comparant els resultats d'ambdós poden saber com afecta l'explicació a la confiança del model. Finalment A.Ray *et al.* defineix una nova mètrica i un nou tipus de saliència: *helpfulness* i mapes d'error. Els mapes d'error són mapes de saliència que indiquen quina és la regió més probable que sigui processada incorrectament. La *helpfulness* consisteix a comparar els mapes d'error amb els mapes de saliència així si el model "mira" regions d'error és normal que no funcioni incorrectament i viceversa.
