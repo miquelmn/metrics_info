@@ -6,7 +6,7 @@
 
 |  Article        | Autors           | Any    | Categoria  |
 | :-------------- |:-----------------| :-----:| :--------- |
-| Saliency checks for saliency metrics      								| [R. Tomsett *et al.*](https://aaai.org/ojs/index.php/AAAI/article/view/6064) | 2020 | *-* |
+| Sanity Checks for Saliency Metrics      								| [R. Tomsett *et al.*](https://aaai.org/ojs/index.php/AAAI/article/view/6064) | 2020 | *-* |
 | Towards Robust Interpretability with Self-Explaining Neural Networks      | [D. Alvarez *et al.*](http://arxiv.org/abs/1806.07538)    |   2018 | *Goodness* |
 | Evaluating the visualization of what a deep neural network has learned 	| [W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/) | 2017 | *Goodness* |
 | A benchmark for interpretability methods in deep neural networks			| [S. Hooker *et al.*](http://arxiv.org/abs/1806.10758) 	| 2018 	| *Goodness* |
@@ -29,7 +29,23 @@
 </div>
 <br />
 
+### Mètriques
+
+<center>
+
+|  Mètrica        						| Autors            	| Tipus		|
+| :------------------------------------	|:-------------------- 	|:---------	|
+| *Faithfulness*						| D. Alvarez *et al.*	|*Goodness*	|
+| *AOPC*								| W. Samek *et al.*		|*Goodness*	|
+| *Deletion Area Under Curve (DAUC)*	| V. Petsiuk *et al.*	|*Goodness*	|
+| *Integration Area Under Curve (IAUC)*	| V. Petsiuk *et al.*	|*Goodness*	|
+| *Sparcity*							| T. Gomez *et al.*		|*Goodness*	|
+| *Calibration rate*					| T. Gomez *et al.*		|*Goodness*	|
+| *Helpfulness*							| A. Ray *et al.*		|*Goodness*	|
+
+</center>
 ## *Goodness*
+
 ### Saliency checks for saliency metrics [(R. Tomsett *et al.* 2020)](https://aaai.org/ojs/index.php/AAAI/article/view/6064)
 
 Els autors analitzen la fiabilitat (*reliability*) d'un conjunt de mètriques per mapes de saliència, és a dir, si els resultats són consistents.
@@ -48,6 +64,9 @@ La fiabilitat és estimada amb tres ítems diferents:
 	a on D_o és la diferència entre imatges i D_e és l'esperat per motius aleatoris. 
 
 - *__Inter-method reliability__*. Comprova si la mètrica és similar a diferents mètodes de saliència. Això es pot mesurar mitjançant el càlcul de la correlació entre les saliències calculades per imatges amb diferents mètodes.
+	
+  > Inter-method reliability assesses whether a saliency metric agrees across different saliency methods. This can be mea- sured by taking the pairwise correlations between the scores of the different saliency methods on the data set images. If the scores of each saliency method fluctuate similarly be- tween images, these correlations will be high, indicating high inter-method reliability.
+
 - *__Internal consistency reliability__*. Indica si diferents mètriques de saliència analitzen el mateix element. Això es pot mesurar calculant la correlació entre diferents mètriques.
 
 Mesuren aquests tres ítems per dues mètriques, les introduïdes per D. Alvarez *et al.* i per W. Samek *et al.*. Els resultats mostren que **no compleixen cap dels tres requisits**. Per aquest motiu es pot seguir investigant sobre mètriques de bonessa per mapes de saliència.
