@@ -33,17 +33,20 @@
 
 <center>
 
-|  Mètrica        						| Autors            	| Tipus		|
-| :------------------------------------	|:-------------------- 	|:---------	|
-| *Faithfulness*						| D. Alvarez *et al.*	|*Goodness*	|
-| *AOPC*								| W. Samek *et al.*		|*Goodness*	|
-| *Deletion Area Under Curve (DAUC)*	| V. Petsiuk *et al.*	|*Goodness*	|
-| *Integration Area Under Curve (IAUC)*	| V. Petsiuk *et al.*	|*Goodness*	|
-| *Sparcity*							| T. Gomez *et al.*		|*Goodness*	|
-| *Calibration rate*					| T. Gomez *et al.*		|*Goodness*	|
-| *Helpfulness*							| A. Ray *et al.*		|*Goodness*	|
+|  Mètrica        						| Autors            	| Descripció	| Tipus		|
+| :------------------------------------	|:-------------------- 	|:------------	|:---------	|
+| *Faithfulness*						| D. Alvarez *et al.*	| Correlació de pearson entre el mapa de saliència i la baixada de l'*score* per la tasca a realitzar quan es perturba un píxel				   											| *Goodness*   |
+| *AOPC*								| W. Samek *et al.*		| Càlcul de l'àrea davall la corba definida per la baixada de l'*score* a causa de perturbar els píxels (amb valor igual a 0) amb l'ordre indicat per la saliència						 | *Goodness* 	| 
+| *Deletion Area Under Curve (DAUC)*	| V. Petsiuk *et al.*	| Càlcul de l'àrea davall la corba definida per la baixada de l'*score* a causa de perturbar els píxels (desenfocant l'imatge) amb l'ordre indicat per la saliència						 |*Goodness*	|
+| *Integration Area Under Curve (IAUC)*	| V. Petsiuk *et al.*	| Càlcul de l'àrea davall la corba definida per l'increment de l'*score* a causa d'anar afegint la informació dels píxels amb l'ordre invers indicat per la saliència			    |*Goodness*	   |
+| *Sparcity*							| T. Gomez *et al.*		| Comprova si la saliència està focalitzada a un punt o per altra part està dispersa per tota la imatge ( a més agrupada millor )     										  			  |*Goodness*	 |
+| *Calibration rate*					| T. Gomez *et al.*		| Similar a DAUC i a IAUC fan les mateixes modificacions però enlloc de calcular l'àrea calculen la correlació entre els píxels														|*Goodness*	   |
+| *Helpfulness*							| A. Ray *et al.*		| Compara mitjançant un *z-test* si els mapes d'error i els mapes de saliència són o no iguals																							  |*Goodness*	 |
 
 </center>
+
+Les mètriques AOPC, DAUC i IAUC són pràcticament la mateixa amb molt poques diferències. De la mateixa manera *Fatihfulness* i *Calibration rate* semblen ser la mateixa.
+
 ## *Goodness*
 
 ### Saliency checks for saliency metrics [(R. Tomsett *et al.* 2020)](https://aaai.org/ojs/index.php/AAAI/article/view/6064)
