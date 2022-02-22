@@ -2,6 +2,15 @@
 
 We developed a two parts experiment aiming to measure the performance of XAI methods in the medical image context. To do so, we assesed the performance dividing it into two different elements: goodness and trust. The experiment is divided also into two parts each one of them aimed to measure these two elements separatly. Nonetheless we also had two elements shared between both of the parts: the dataset and the artificial intelligence model.
 
+<br />
+<div align="center">
+	<img style="width: 70%;" src="figs/experiment.png" />
+	<br />
+	<em>Diagram of the proposed experiment</em>
+</div>
+<br />
+
+
 ## Shared elements
 
 ### Dataset
