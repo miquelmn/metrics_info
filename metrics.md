@@ -11,7 +11,7 @@
 | Evaluating the visualization of what a deep neural network has learned 	| [W. Samek *et al.*](https://ieeexplore.ieee.org/document/7552539/) | 2017 | *Goodness* |
 | A benchmark for interpretability methods in deep neural networks			| [S. Hooker *et al.*](http://arxiv.org/abs/1806.10758) 	| 2018 	| *Goodness* |
 | RisE: Randomized input sampling for explanation of black-box models 		| [V. Petsiuk *et al.*](http://arxiv.org/abs/1806.07421)	| 2018	| *Goodness* |
-| Metrics for saliency map evaluation of deep learning explanation methods	| [T. Gomez *et al.*](http://arxiv.org/abs/1806.10758)		| 2020	| *Goodness* |
+| Metrics for saliency map evaluation of deep learning explanation methods	| [T. Gomez *et al.*](https://arxiv.org/abs/2201.13291)		| 2020	| *Goodness* |
 | Metrics for Explainable AI: Challenges and Prospects						| [R. Hoffman *et al.*](http://arxiv.org/abs/1812.04608)	| 2019	| *Trust* 	 |
 | Trust in automated systems literature review				| [Adams, *et al.*](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc13/p520342.pdf)	| 2003	| *Trust* 	 |
 | Explaining black-box classifiers using post-hoc explanations-by-example: The effect of explanations and error-rates in XAI user studies						| [E. Kenny *et al.*](https://www.sciencedirect.com/science/article/pii/S0004370221000102?via%3Dihub)	| 2021	| Experiments	 |
@@ -44,8 +44,6 @@
 | *Helpfulness*							| A. Ray *et al.*		| Compara mitjançant un *z-test* si els mapes d'error i els mapes de saliència són o no iguals																							  |*Goodness*	 |
 
 </center>
-
-Les mètriques AOPC, DAUC i IAUC són pràcticament la mateixa amb molt poques diferències. De la mateixa manera *Fatihfulness* i *Calibration rate* semblen ser la mateixa.
 
 ## *Goodness*
 
@@ -127,6 +125,14 @@ A més de la limitació anterior també s'observa que les mètriques existents n
 -	*__Calibration__*. Una mapa de saliència està calibrat quan els valors dels píxels únicament contenen informació de la importància d'aquests píxels per la classificació. Proposen dues mètriques similars a les vistes, que modifiquen l'entrada i després realitzen la correlació entre la saliència i els valors de la classificació de la imatge modificada. El propi article indica que aquestes mètriques també provoquen imatges fora del domini.
 
 **No es poden emprar aquestes mètriques separades.**
+
+### Conclusions
+
+L'anàlisi dels articles anteriors ens permet observar com hi ha un conjunt de mètriques molt similars entre elles. Així les mètriques AOPC, DAUC i IAUC són pràcticament la mateixa amb molt poques diferències, totes elles es basen en comprovar si l'aplicació d'oclusions seguint la informació donada pel mapa de saliència es consistent amb els resultats del propi mapa. Per altra part, observam que tant la *Fatihfulness* com la *Calibration rate* també són molt similars. Ambdues empren el coeficient de Pearson per comprovar que els mapes de saliència són veraços. 
+
+D'aquests fets podem concluir que les set mètriques es poden resumir en tres: AOPC, *Fatihfulness* i *sparcity*. Aquestes tres mètriques són les que T. Gomez *et al.* proposen per superar les limitacions de les mètriques emprades fins llavors. Per aquest motiu seleccionam aquestes tres mètriques com els que emprarem per avaluar la qualitats dels mapes de saliència.
+
+Finalment també hem analitzat la *Helpfulness*, però aquesta per la seva tipologia no la consideram ja que és una mètrica molt depenent del model d'explicabilitat subjacent.
 
 ## *Trust*
 ### Metrics for Explainable AI: Challenges and Prospects ([R. Hoffman *et al.*](http://arxiv.org/abs/1812.04608))
