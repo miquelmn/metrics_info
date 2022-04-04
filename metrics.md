@@ -142,7 +142,7 @@ Analitzen diferents aspectes psicològics de l'explicabilitat i com mesurar-los:
 -	**Bonesa (*Goodness*)**. És l'explicació clara i precisa. Per mesurar-ho presententen una checklist.
 -	**Satisfacció (*Satisfaction*)**. L'explicació és satisfactòria per l'usuari en el seu context. És descrita com el grau amb el qual l'usuari considera que entén el sistema d'IA explicat a ell. 
 -	**Curiositat (*Curiosity*)**. La cerca de l'explicació està induïda per la curiositat, per tant, la manca d'aquesta fa que l'explicació sigui manco útil. Checklist
--	**Confiançan (*Trust*)**. Dues preguntes formen part d'aquesta confiança: et dona confiança? Seguiries la recomanació del sistema? Scales:
+-	**Confiança (*Trust*)**. Dues preguntes formen part d'aquesta confiança: et dona confiança? Seguiries la recomanació del sistema? Scales:
 	-	**Cahour-Forzy (2009), [Adams, et al. (2003)](https://cradpdf.drdc-rddc.gc.ca/PDFS/unc17/p520342.pdf)**. 
 	-	**Montague (2010)**. Aplicat a eines per la diagnosi de malalties. 
 	-	**Jian, et al.**
@@ -175,7 +175,7 @@ Duen a terme dos experiments per analitzar l'explicació obtinguda d'un algoritm
 
 Els seus tres experiments els duen a terme amb 348 participants. **Detecten respostes aleatòries dels participants (aquells participants que no detecten errors de classificació detectats per tota la resta)**. En els tres experiments l'usuari, mitjançant escales i *checklists* qualifica els següents ítems de la classificació i l'explicació: *correctness, reasonableness, global correctness & reasonableness* i *trust and satisfaction*. Realitzen anàlis MANOVA.
 
-El primer experiment analitza com es relacionen la presència o no d'explicació, la qualitat de la predicció amb els ítems analitzar. Demostren que la presència d'explicacions només es necessari per justificar les prediccions incorrectes, com es pot veure en la figura següent.
+El primer experiment analitza com es relacionen la presència o no d'explicació, la qualitat de la predicció amb els ítems a analitzar. Demostren que la presència d'explicacions només es necessari per justificar les prediccions incorrectes, com es pot veure en la figura següent.
 
 <br />
 <div align="center" style="display: flex; justify-content: space-around">
