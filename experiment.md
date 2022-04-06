@@ -75,7 +75,6 @@ In this experiment, we were only taken into consideration the XAI algorithms tha
 | GradCAM++	   			| [A. Chattopadhyay *et al.*](https://arxiv.org/abs/1710.11063)		|
 | LIME					| [M. Ribeiro *et al.*](https://arxiv.org/abs/1602.04938)			|
 | SmoothGrad			| [D. Smilkov *et al.*](https://arxiv.org/abs/1706.03825)			|
-| NormGrad				| [R. Sylvestre-Alvise *et al.*](https://arxiv.org/abs/1910.08823)	|
 | K. Simonyan *et al.*	| [K. Simonyan *et al.*](https://arxiv.org/abs/1312.6034)			| 	
 | Guided Backprop 		| [J. Springenberg *et al.*](https://arxiv.org/abs/1412.6806)		|
 | Integrated Gradients	| [M. Sundararajan *et al.*](https://arxiv.org/abs/1703.01365)		|
